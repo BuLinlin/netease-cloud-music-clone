@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router';
 
 // 定义标签内容，包含标题和对应的路由路径
@@ -58,10 +58,11 @@ const toggleSidebar = () => {
 const closeSidebar = () => {
     showSidebar.value = false
 };
+const showHeader = computed(() => route.meta.showHeader)
 </script>
 
 <template>
-    <div class="header">
+    <div class="header" v-if="showHeader">
         <!-- 左侧菜单按钮 -->
         <div class="menu-btn" @click="toggleSidebar">
             <van-icon name="wap-nav" />

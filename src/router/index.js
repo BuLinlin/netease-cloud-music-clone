@@ -8,7 +8,9 @@ const router = createRouter({
       name: 'Recommend',
       component: () => import('@/views/RecommendPage.vue'),
       meta: {
-        title: '推荐'
+        title: '推荐',
+        showBottomNav: true,
+        showHeader: true,
       }
     },
     {
@@ -16,7 +18,9 @@ const router = createRouter({
       name: 'PlaylistDetail',
       component: () => import('@/views/PlaylistDetailPage.vue'),
       meta: {
-        title: '歌单详情'
+        title: '歌单详情',
+        showBottomNav: false,
+        showHeader: false,
       }
     }
   ],

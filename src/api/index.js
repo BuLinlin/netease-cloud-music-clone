@@ -24,17 +24,10 @@ export const musicApi = {
   getRecommendPlaylists: () => get('/recommend/resource'),
   // 获取歌单详情
   getPlaylistDetail: (id, limit = 50, offset = 0) => get(`/playlist/track/all?id=${id}&limit=${limit}&offset=${offset}`),
-  // 获取热门歌曲
-  getHotSongs: () => get('/music/hot/songs'),
-  
-  // 获取歌曲详情
-  getSongDetail: (id) => get(`/music/song/detail/${id}`),
-  
-  // 获取歌词
-  getLyric: (id) => get(`/music/song/lyric/${id}`),
-  
-  // 搜索歌曲
-  searchSongs: (keyword) => get('/music/search', { keyword })
+  // 获取歌单详情动态
+  getPlaylistDetailDynamic: (id) => get(`/playlist/detail/dynamic?id=${id}`),
+  // 获取音乐播放地址
+  getMusicUrl: (id, level = 'exhigh') => get(`/song/url/v1?id=${id}&level=${level}`),
 }
 
 // 导出所有API模块
