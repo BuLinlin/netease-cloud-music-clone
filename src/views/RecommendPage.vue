@@ -3,6 +3,7 @@
 import { ref, onMounted } from 'vue'
 import { musicApi } from '@/api/index.js'
 import { useRouter } from 'vue-router'
+import AppHeader from '@/components/AppHeader.vue'
 // 创建路由实例
 const router = useRouter()
 // 跳转详情页功能代码
@@ -44,6 +45,7 @@ onMounted(() => {
 })
 </script>
 <template>
+    <AppHeader></AppHeader>
     <div class="card-box">
         <div class="card" v-for="card, index in recommendCards" :key="index"
             @click="navigateToPlaylist(card.id, card.title)">

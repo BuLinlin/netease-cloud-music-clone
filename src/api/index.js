@@ -23,7 +23,7 @@ export const musicApi = {
   // 获取推荐歌单
   getRecommendPlaylists: () => get('/recommend/resource'),
   // 获取歌单详情
-  getPlaylistDetail: (id) => get(`/playlist/detail?id=${id}`),
+  getPlaylistDetail: (id, limit = 50, offset = 0) => get(`/playlist/track/all?id=${id}&limit=${limit}&offset=${offset}`),
   // 获取热门歌曲
   getHotSongs: () => get('/music/hot/songs'),
   

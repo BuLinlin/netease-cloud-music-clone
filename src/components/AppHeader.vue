@@ -155,6 +155,8 @@ const closeSidebar = () => {
         }
 
         :deep(.van-tabs__line) {
+            height: 1px;
+            border-radius: 0;
             background-color: #0f0f24;
         }
     }
