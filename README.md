@@ -1,44 +1,57 @@
-# .
+# 项目技术栈及使用声明
 
-This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 一、项目基本信息
+1. 项目名称：[网易云音乐克隆项目]
+2. 项目类型：[前端Web应用]
+3. 开发模式：前后端分离（前端独立构建，通过API与后端交互）
+4. 声明目的：明确项目技术选型、使用规范及相关权责，保障项目开发、维护及使用过程的合规性与安全性
 
-## Recommended Browser Setup
+## 二、核心技术栈说明
+### （一）前端技术栈
+| 技术类别       | 技术名称及版本                | 核心用途                                                                 |
+|----------------|-----------------------------|--------------------------------------------------------------------------|
+| 核心框架       | Vue 3（Composition API）     | 项目整体架构搭建，页面组件开发、逻辑复用                                  |
+| 组件库         | Vant（最新稳定版）           | 快速实现移动端友好的UI组件，提升界面一致性与开发效率                      |
+| 数据请求       | Axios                       | 处理前后端API交互，包括请求拦截、响应拦截、错误处理、请求重试等            |
+| 构建工具       | Vite                        | 项目构建、开发环境启动、热更新，优化开发与打包效率（支持按需编译、快速刷新）|
+| 路由管理       | Vue Router（4.x+）           | 实现页面路由跳转、路由守卫、嵌套路由、动态路由等功能                      |
+| 状态管理       | Pinia                       | 管理全局状态（如用户信息、系统配置、缓存数据），替代Vuex，支持模块化、TypeScript |
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+### （二）后端技术栈
+- 核心框架：Node.js（最新LTS版本，如：v20.x）
+- 核心用途：提供API接口服务，处理数据逻辑、数据库交互、权限验证、业务逻辑封装等后端业务
 
-## Customize configuration
+## 三、使用规范
+### （一）开发规范
+1. 代码规范：遵循ESLint + Prettier代码校验规则，统一代码风格（2空格缩进、小驼峰命名、关键逻辑添加注释）
+2. 组件开发：基于Vue 3 Composition API编写组件，复用Vant组件时需遵循Vant官方使用规范；自定义组件需保证高内聚、低耦合，提供清晰的Props/Emits定义
+3. 路由配置：所有路由需在`router/index.js`中统一注册，路由路径、命名需语义化（如：`/user/profile`），关键路由（如登录、权限页面）需配置路由守卫进行权限控制
+4. 状态管理：全局状态需按业务模块拆分Pinia Store（如：`userStore`、`settingStore`），避免单一Store过于庞大；状态修改需通过Action规范操作，禁止直接修改State
+5. API请求：所有API请求需在`api/`目录下按业务模块分类管理（如：`api/user.js`），统一在`api/request.js`中配置请求基地址、超时时间、请求/响应拦截器，避免重复代码
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+### （二）部署与运行规范
+1. 开发环境：
+   - 需安装Node.js（LTS版本）、npm/yarn/pnpm包管理工具
+   - 执行 `npm install`（或 yarn install/pnpm install）安装依赖
+   - 执行 `npm run dev` 启动开发服务器，默认访问地址：http://127.0.0.1:5173（Vite默认端口）
+2. 生产环境：
+   - 前端：执行 `npm run build` 打包前端资源，生成的`dist`目录需部署至合法的Web服务器（如Nginx、Apache）
+   - 后端：Node.js服务需配置合法端口（避免使用80、443等常用端口冲突）、环境变量（如数据库连接信息、API密钥、环境标识NODE_ENV）
+3. 依赖管理：
+   - 项目依赖需在`package.json`中明确声明，区分`dependencies`（生产依赖）与`devDependencies`（开发依赖）
+   - 安装新依赖时需选择稳定版本（优先选择官方维护、下载量高的包），避免使用未知风险的第三方包
+   - 定期执行 `npm audit` 检测依赖安全漏洞，及时更新修复
 
-## Project Setup
+### （三）数据安全规范
+1. API交互：所有前端与后端的API通信需优先使用HTTPS协议，敏感数据（如用户密码、token、手机号、身份证号）需进行加密处理（如AES加密）
+2. 权限控制：前端需配合后端实现基于角色/权限的访问控制（RBAC），未授权用户不得访问受限页面及API接口，路由跳转时需校验权限
+3. 数据存储：前端本地存储（localStorage/sessionStorage）仅用于存储非敏感数据（如用户偏好设置、临时缓存），敏感数据需通过后端数据库安全存储，禁止在前端明文存储敏感信息
 
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+## 四、权责声明
+1. 技术选型说明：本项目所采用的技术栈（Vue 3、Vant、Axios、Node.js等）均为开源技术，其版权归属原技术官方团队，本项目仅在合法授权范围内使用，遵循对应开源协议（如MIT协议）
+2. 开发责任：开发人员需严格遵循上述技术规范与开发规范，确保项目代码质量、安全性及可维护性；提交代码前需进行本地测试，避免引入bug
+3. 使用责任：本项目仅用于[个人学习交流]，不得用于违法违规用途（如窃取用户信息、传播不良内容等）
+4. 维护责任：项目维护方需定期更新依赖包以修复安全漏洞，提供必要的技术支持与问题排查服务；对于非规范操作导致的问题，维护方有权拒绝提供支持
+5. 免责声明：因违反本声明规范、滥用技术、未遵循开源协议或第三方因素（如开源技术漏洞、服务器故障、网络攻击）导致的任何直接或间接损失，项目开发方及维护方不承担直接责任
