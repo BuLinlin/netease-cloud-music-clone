@@ -7,6 +7,8 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { VantResolver } from '@vant/auto-import-resolver'
+// 新增：TailwindCSS 配置
+import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -20,6 +22,8 @@ export default defineConfig({
     Components({
       resolvers: [VantResolver()],
     }),
+    // 新增：TailwindCSS 配置
+    tailwindcss(),
   ],
   resolve: {
     alias: {

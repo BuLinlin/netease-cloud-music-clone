@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-export default defineStore('playMusic', {
+export const usePlayMusicStore = defineStore('playMusic', {
     // 全局存储播放信息
     state: () => ({
         // 当前播放的音乐信息

@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+@theme {
+    --color-netease: #E60026;
+    /* 浅色变量 */
+    --color-bg: #ffffff;
+    --color-bg-card: #f7f7f7;
+    --color-text-primary: #111;
+    --color-text-secondary: #666;
+    --color-border: #e5e5e5;
+}
+
+/* 深色模式覆盖变量 */
+.dark {
+    --color-bg: #121212;
+    --color-bg-card: #1a1a1a;
+    --color-text-primary: #fff;
+    --color-text-secondary: #b3b3b3;
+    --color-border: #333;
+}

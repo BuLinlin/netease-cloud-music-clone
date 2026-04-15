@@ -44,106 +44,26 @@ onMounted(() => {
 })
 </script>
 <template>
-    <div class="card-box">
-        <div class="card" v-for="card, index in recommendCards" :key="index"
-            @click="navigateToPlaylist(card.id, card.title)">
-            <van-image fit="cover" :src="card.icon" />
-            <!-- 信息遮罩 -->
-            <div class="card-info">
-                <div class="card-title">
-                    <van-icon size="20" name="todo-list" />
-                    <p>推荐歌单</p>
+    <div class="w-full flex px-[15px] py-3 gap-[10px] overflow-x-auto scrollbar-hide">
+        <div class="rounded-sm overflow-hidden w-[140px] h-[190px] flex-shrink-0 cursor-pointer relative"
+            v-for="card, index in recommendCards" :key="index" @click="navigateToPlaylist(card.id, card.title)">
+            <van-image class="w-full h-full" fit="cover" :src="card.icon" />
+            <!-- 带上下阴影的遮罩 -->
+            <div
+                class="absolute top-0 left-0 w-full h-full flex flex-col justify-between bg-gradient-to-b from-black/30 via-transparent to-black/60">
+                <!-- 顶部标签 -->
+                <div class="p-2 w-full flex items-center text-white">
+                    <van-icon class="mr-1" size="20" name="todo-list" />
+                    <p class="font-bold text-[14px]">推荐歌单</p>
                 </div>
-                <div class="card-desc">
-                    <van-icon size="20" name="play-circle" />
-                    <p>{{ card.title }}</p>
+                <!-- 底部描述区 -->
+                <div class="card-desc  flex flex-col items-end justify-end">
+                    <van-icon size="20" name="play-circle" class="text-white mb-1 mr-1" />
+                    <p class="px-2 py-3 text-white  text-[12px] w-full text-center truncate bg-black/40">
+                        {{ card.title }}
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 </template>
-<style lang="scss" scoped>
-.card-box {
-    display: flex;
-    width: 100%;
-    overflow-x: auto;
-    padding: 3% 5%;
-    box-sizing: border-box;
-
-    .card {
-        display: flex;
-        position: relative;
-        border-radius: 5px;
-        margin-right: 10px;
-        overflow: hidden;
-        height: 180px;
-        flex: 0 0 34vw;
-
-        .card-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            color: #fff;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-
-            .card-title {
-                box-sizing: border-box;
-                width: 100%;
-                font-size: 16px;
-                padding: 5%;
-                box-sizing: border-box;
-                font-weight: bold;
-                display: flex;
-                align-items: center;
-
-                p {
-                    margin-left: 5px;
-                    font-size: 14px;
-                }
-            }
-
-            .card-desc {
-                box-sizing: border-box;
-                width: 100%;
-                font-size: 14px;
-                display: flex;
-                flex-direction: column;
-                align-items: end;
-
-                .van-icon {
-                    margin-right: 5%;
-                }
-
-                p {
-                    margin-top: 2%;
-                    padding: 10% 5%;
-                    box-sizing: border-box;
-                    text-align: center;
-                    width: 100%;
-                    background-color: #a3b4c969;
-                    font-size: 12px;
-                    // 超出部分省略号
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                }
-            }
-        }
-
-        &:last-of-type {
-            margin-right: 0;
-        }
-    }
-}
-
-// 隐藏滚动条
-.card-box::-webkit-scrollbar {
-    display: none;
-}
-</style>

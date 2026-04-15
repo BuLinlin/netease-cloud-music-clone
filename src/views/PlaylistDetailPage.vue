@@ -10,8 +10,8 @@ import { musicApi } from '@/api/index.js'
 // 导入详情页头部组件
 import DetailHeader from '@/components/DetailHeader.vue'
 // 导入播放音乐状态管理
-import playMusicStore from '@/stores/PlayMusic'
-const musicStore = playMusicStore()
+import { usePlayMusicStore } from '@/stores/PlayMusic'
+const musicStore = usePlayMusicStore()
 // 声明响应式变量
 // active: 用于控制排序按钮的状态
 const active = ref(0)
