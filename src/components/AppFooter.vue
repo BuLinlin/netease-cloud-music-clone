@@ -1,8 +1,6 @@
 <script setup>
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
-import { usePlayMusicStore } from '@/stores/PlayMusic'
-const musicStore = usePlayMusicStore()
 const route = useRoute()
 // 检查是否显示底部导航栏
 const showBottomNav = computed(() => route.meta.showBottomNav)
@@ -10,9 +8,6 @@ const showBottomNav = computed(() => route.meta.showBottomNav)
 </script>
 <template>
     <van-action-bar>
-        <div v-if="musicStore.playList.length > 0" class="play-nav">
-            <van-image width="100" height="100" :src="musicStore.currentMusic?.cover" />
-        </div>
         <div class="bottom-nav" :class="{ 'hide': !showBottomNav }">
             <van-action-bar-icon :class="{ 'active': route.path === '/' }" to="/" text="首页" />
             <van-action-bar-icon :class="{ 'active': route.path === '/playlist' }" to="/playlist" text="歌单" />

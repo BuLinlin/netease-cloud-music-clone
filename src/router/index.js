@@ -26,7 +26,12 @@ const router = createRouter({
   ],
 })
 router.beforeEach((to, from, next) => {
-  document.title = to.meta.title || '网易云音乐'
+  // 对于歌单详情页，优先使用 query 中的 title
+  if (to.name === 'PlaylistDetail' && to.query.title) {
+    document.title = to.query.title
+  } else {
+    document.title = to.meta.title || '网易云音乐'
+  }
   next()
 })
 
